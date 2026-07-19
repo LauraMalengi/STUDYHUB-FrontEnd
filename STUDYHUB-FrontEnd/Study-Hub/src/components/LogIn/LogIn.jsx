@@ -1,123 +1,171 @@
-// src/pages/SignIn.jsx
-import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import "./LogIn.css";
 
-const LogIn = () => {
+import google from "../../assets/Facebook.png"
+import facebook from "../../assets/Google.png"
 
- const [credentials, setCredentials] = useState({
-    email:"",
-    password:""
-});
+function Login() {
 
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCredentials((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+    const [formData, setFormData] = useState({
+        email: "",
+        password: ""
+    });
 
-  const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError("");
+    const [message, setMessage] = useState("");
 
-  // Client-side validation
-  if (!credentials.email || !credentials.password) {
-    setError("Email and password are required");
-    return;
-  }
-
-  try {
-    setIsLoading(true);
-    
-    await axios.post("http://localhost:3000/login",{
-    email:credentials.email,
-    password:credentials.password
-});
-
-    if(response.data.token){
-      localStorage.setItem(
-    "token",
-    response.data.token
-);
-      
-    } else {
-      setError(response.data.message || 'Login failed');
+    function handleChange(event) {
+        setFormData({
+            ...formData,
+            [event.target.name]: event.target.value
+        });
     }
-  } catch (err) {
-    // Specific error handling
-    if (err.response) {
-      if (err.response.status === 400) {
-        setError(err.response.data.message || 'Invalid request');
-      } else if (err.response.status === 401) {
-        setError('Invalid email or password');
-      } else {
-        setError('Server error. Please try again later.');
-      }
-    } else if (err.request) {
-      setError('Network error. Please check your connection.');
-    } else {
-      setError('An unexpected error occurred');
+
+    async function handleSubmit(event) {
+
+        event.preventDefault();
+
+        try {
+
+            const response = await fetch("http://localhost:3000/login", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify(formData)
+
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+
+                localStorage.setItem("token", data.token);
+
+                alert("Login Successful!");
+
+                navigate("/");
+
+            } else {
+
+                setMessage(data.message);
+
+            }
+
+        } catch (error) {
+
+            setMessage("Server Error");
+
+        }
+
     }
-  } finally {
-    setIsLoading(false);
-  }
-};
 
-  return (
-    <div className="auth-page">
-      <div
-        className="auth-side image-left"
-        style={{
-          backgroundImage: `url(${imageUrl})`,
-          backgroundSize: 'cover',
-          height: '100vh',
-        }}
-      >
-        <h1>
-          HI<br />
-          Welcome back!!
-        </h1>
-      </div>
+    return (
 
-      <div className="auth-side form-right">
-        <div className="form-box">
-          <h2>LogIn</h2>
-          {error && <div className="error-message">{error}</div>}
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="identifier"
-              placeholder="Username or Email"
-              value={credentials.identifier}
-              onChange={handleChange}
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={credentials.password}
-              onChange={handleChange}
-            />
-            <button type="submit" disabled={isLoading}>
-              {isLoading ? "Signing in..." : "Sign In"}
-            </button>
-            <p><Link to="/forgot-password">Forgot Password?</Link></p>
-            <p>
-              Don't have an account?{" "}
-              <Link to="/signup">Sign up now</Link>
-            </p>
-          </form>
+        <div className="login-page">
+
+            <div className="overlay">
+
+                <div className="login-card">
+
+                    <h1>Welcome StudyHub</h1>
+
+                    <p className="subtitle">
+                        Sign in to continue
+                    </p>
+
+                    <form onSubmit={handleSubmit}>
+
+                        <label>
+                            *Username
+                        </label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Type your username or Email address"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                        />
+
+                        <label>
+                            *Password
+                        </label>
+
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Type your password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required
+                        />
+
+                        <div className="forgot-password">
+
+                            <a href="#">
+                                Forgot password?
+                            </a>
+
+                        </div>
+
+                        <button
+                            className="login-btn"
+                            type="submit"
+                        >
+                            Sign In
+                        </button>
+
+                    </form>
+
+                    {message &&
+
+                        <p className="error">
+                            {message}
+                        </p>
+
+                    }
+
+                    <div className="signup-link">
+
+                        Don't have account?
+
+                        <Link to="/signup">
+                            Sign Up
+                        </Link>
+
+                    </div>
+
+                    <div className="divider">
+
+                        <span>Or With</span>
+
+                    </div>
+
+                    <button className="google-btn">
+                    <img src={google} alt="Google" />
+                        Sign in with your Google
+                    </button>
+
+                    <button className="facebook-btn">
+                    <img src={facebook} alt="Facebook" />
+                        Sign in with your Facebook
+                    </button>
+
+                </div>
+
+            </div>
+
         </div>
-      </div>
-    </div>
-  );
-};
 
-export default LogIn;
+    );
+
+}
+
+export default Login;
