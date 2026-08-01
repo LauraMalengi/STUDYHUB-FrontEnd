@@ -307,6 +307,34 @@ input::placeholder{
 
 }
 
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-container input {
+  width: 100%;
+  padding: 12px 50px 12px 12px;
+  box-sizing: border-box;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #555;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.toggle-password:hover {
+  color: #000;
+}
+
 @media(max-width:768px){
 
 .login-card{
