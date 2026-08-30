@@ -1,90 +1,114 @@
-/* src/index.css */
+/* =========================
+   APP GLOBAL STYLES
+========================= */
 
-.auth-page {
-  display: flex;
-  height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+:root {
+    --text: #6b6375;
+    --text-h: #08060d;
+    --bg: #ffffff;
+    --border: #e5e4e7;
+    --accent: #aa3bff;
+    --accent-bg: rgba(170, 59, 255, 0.1);
+    --accent-border: rgba(170, 59, 255, 0.5);
+
+    --sans: system-ui, "Segoe UI", Roboto, sans-serif;
+    --heading: system-ui, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, Consolas, monospace;
+
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--bg);
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.auth-side {
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  box-sizing: border-box;
+
+/* =========================
+   PAGE BASICS
+========================= */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
 }
 
-.image-left {
-  background-size: cover;
-  background-position: center;
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: left;
+
+/* =========================
+   REACT ROOT
+========================= */
+
+#root {
+    width: 100%;
+    min-height: 100vh;
 }
 
-.image-left h1 {
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 30px;
-  border-radius: 15px;
+
+/* =========================
+   HEADINGS
+========================= */
+
+h1,
+h2 {
+    font-family: var(--heading);
+    color: var(--text-h);
 }
 
-.form-right {
-  background-color: #fff;
+h1 {
+    font-size: 56px;
+    letter-spacing: -1.68px;
+    margin: 32px 0;
 }
 
-.form-box {
-  width: 100%;
-  max-width: 400px;
+h2 {
+    font-size: 24px;
+    line-height: 118%;
+    letter-spacing: -0.24px;
+    margin: 0 0 8px;
 }
 
-.form-box h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 20px;
+
+/* =========================
+   PARAGRAPHS
+========================= */
+
+p {
+    margin: 0;
 }
 
-.form-box form {
-  display: flex;
-  flex-direction: column;
+
+/* =========================
+   CODE
+========================= */
+
+code {
+    font-family: var(--mono);
+    font-size: 15px;
+    line-height: 135%;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: var(--text-h);
 }
 
-.form-box input {
-  padding: 12px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-}
 
-.form-box button {
-  padding: 12px;
-  margin-top: 12px;
-  background-color: #e91e63;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+/* =========================
+   RESPONSIVE
+========================= */
 
-.form-box button:hover {
-  background-color: #c2185b;
-}
+@media (max-width: 1024px) {
 
-.form-box p {
-  text-align: center;
-  font-size: 0.9rem;
-  margin-top: 10px;
-}
+    h1 {
+        font-size: 36px;
+        margin: 20px 0;
+    }
 
-.form-box a {
-  color: #007bff;
-  text-decoration: none;
-}
+    h2 {
+        font-size: 20px;
+    }
 
-.form-box a:hover {
-  text-decoration: underline;
 }
