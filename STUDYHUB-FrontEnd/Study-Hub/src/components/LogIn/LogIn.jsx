@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./LogIn.css";
-
-import google from "../../assets/Facebook.png"
-import facebook from "../../assets/Google.png"
+import google from "../../assets/Google.png"
+import facebook from "../../assets/Facebook.png"
 
 function Login() {
 
     const navigate = useNavigate();
-
+    const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -26,6 +25,8 @@ function Login() {
     async function handleSubmit(event) {
 
         event.preventDefault();
+
+         console.log(formData);
 
         try {
 
@@ -47,9 +48,9 @@ function Login() {
 
                 localStorage.setItem("token", data.token);
 
-                alert("Login Successful!");
+                alert("LogIn Successful!");
 
-                navigate("/");
+                navigate("/home");
 
             } else {
 
@@ -76,7 +77,7 @@ function Login() {
                     <h1>Welcome StudyHub</h1>
 
                     <p className="subtitle">
-                        Sign in to continue
+                        Log in to continue
                     </p>
 
                     <form onSubmit={handleSubmit}>
@@ -98,15 +99,26 @@ function Login() {
                             *Password
                         </label>
 
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Type your password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            required
-                        />
+                        <div className="password-container">
 
+    <input
+        type={showPassword ? "text" : "password"}
+        name="password"
+        placeholder="Type your password"
+        value={formData.password}
+        onChange={handleChange}
+        required
+    />
+
+    <button
+        type="button"
+        className="toggle-password"
+        onClick={() => setShowPassword(!showPassword)}
+    >
+        {showPassword ? "Hide" : "Show"}
+    </button>
+
+</div>
                         <div className="forgot-password">
 
                             <a href="#">
@@ -119,7 +131,7 @@ function Login() {
                             className="login-btn"
                             type="submit"
                         >
-                            Sign In
+                            Log In
                         </button>
 
                     </form>

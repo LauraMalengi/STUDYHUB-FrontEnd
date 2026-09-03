@@ -2,18 +2,19 @@ require('dotenv').config();
 const express = require("express");
 const bcrypt = require("bcrypt");
 const base64 = require("base-64");
+const cors = require("cors");
 const {MongoClient,ObjectId}=require("mongodb");
 const app = express();
 app.use(express.json());
 const uri = process.env.MONGODB_URI;
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 let client, db;
 
 async function connectToMongo(){
     client = new MongoClient(uri);
     await client.connect();
     db = client.db("StudyHub");
-    console.log("CONNECTED to mongo")
+    console.log("CONNECTED to mongodb")
 }
 
 async function basicAuthMiddleware(req, res, next) {
@@ -49,6 +50,13 @@ async function basicAuthMiddleware(req, res, next) {
     res.status(500).json({ error: 'Authentication failed' });
   }
 }
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 app.use(basicAuthMiddleware);
 

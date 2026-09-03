@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./SignUp.css"
-
-import google from "../../assets/Facebook.png"
-import facebook from "../../assets/Google.png"
+import google from "../../assets/Google.png"
+import facebook from "../../assets/Facebook.png"
 
 function SignUp() {
 
     const navigate = useNavigate();
+
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const [formData, setFormData] = useState({
         fullname: "",
@@ -115,25 +117,45 @@ function SignUp() {
 
                         <label>*Create Password</label>
 
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Create a new password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            required
-                        />
+                       <div className="password-container">
+  <input
+    type={showPassword ? "text" : "password"}
+    name="password"
+    placeholder="Password"
+    value={formData.password}
+    onChange={handleChange}
+    required
+  />
+
+  <button
+    type="button"
+    className="toggle-password"
+    onClick={() => setShowPassword(!showPassword)}
+  >
+    {showPassword ? "Hide" : "Show"}
+  </button>
+</div>
 
                         <label>*Confirm Password</label>
 
-                        <input
-                            type="password"
-                            name="confirmPassword"
-                            placeholder="Confirm your password"
-                            value={formData.confirmPassword}
-                            onChange={handleChange}
-                            required
-                        />
+                        <div className="password-container">
+  <input
+    type={showConfirmPassword ? "text" : "password"}
+    name="confirmPassword"
+    placeholder="Confirm Password"
+    value={formData.confirmPassword}
+    onChange={handleChange}
+    required
+  />
+
+  <button
+    type="button"
+    className="toggle-password"
+    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+  >
+    {showConfirmPassword ? "Hide" : "Show"}
+  </button>
+</div>
 
                         <div className="role-buttons">
 
@@ -183,7 +205,7 @@ function SignUp() {
                         Already have an account?
 
                         <Link to="/signin">
-                            Login
+                            LogIn
                         </Link>
 
                     </div>
