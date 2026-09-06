@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./SignUp.css"
-import google from "../../assets/Google.png"
-import facebook from "../../assets/Facebook.png"
+import google from "../../assets/websites-icon/Google.png"
+import facebook from "../../assets/websites-icon/Facebook.png"
 
 function SignUp() {
 
@@ -43,7 +43,7 @@ function SignUp() {
 
         try {
 
-            const response = await fetch("http://localhost:3000/signup", {
+            const response = await fetch("http://100.60.192.143:3001/signup", {
 
                 method: "POST",
 
