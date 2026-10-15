@@ -1,0 +1,294 @@
+/* ==============================
+   STUDYHUB LOGIN PAGE
+================================ */
+
+.login-page {
+    min-height: 100vh;
+    width: 100%;
+    padding: 24px 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-image: url("../../assets/websites-icon/LogIn bg2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Login overlay */
+.login-page .overlay {
+    width: 100%;
+    min-height: calc(100vh - 48px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 16px 0;
+
+    background: transparent;
+}
+
+/* Login card */
+.login-page .login-card {
+    width: 100%;
+    max-width: 480px;
+
+    padding: 28px;
+
+    color: #ffffff;
+    text-align: center;
+
+    background: rgba(17, 24, 39, 0.88);
+
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+
+    backdrop-filter: blur(10px);
+}
+
+/* Heading */
+.login-page .login-card h1 {
+    margin-bottom: 8px;
+
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+/* Subtitle */
+.login-page .subtitle {
+    margin-bottom: 24px;
+
+    color: #e5e7eb;
+    font-size: 15px;
+}
+
+/* Form */
+.login-page form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+/* Labels */
+.login-page label {
+    margin-bottom: 6px;
+
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Inputs */
+.login-page .login-card input {
+    width: 100%;
+    min-width: 0;
+
+    padding: 12px 14px;
+    margin-bottom: 16px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+
+    background: #ffffff;
+    color: #111827;
+
+    font-size: 15px;
+}
+
+.login-page .login-card input::placeholder {
+    color: #6b7280;
+}
+
+.login-page .login-card input:focus {
+    outline: 2px solid #f4c542;
+    outline-offset: 2px;
+}
+
+/* Password field */
+.login-page .password-container {
+    position: relative;
+    width: 100%;
+}
+
+.login-page .password-container input {
+    padding-right: 65px;
+}
+
+.login-page .toggle-password {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+
+    padding: 5px;
+
+    border: none;
+    background: transparent;
+
+    color: #374151;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Forgot password */
+.login-page .forgot-password {
+    margin: 0 0 18px;
+    text-align: right;
+}
+
+.login-page .forgot-password a {
+    color: #f4c542;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Login button */
+.login-page .login-btn {
+    width: 100%;
+    min-height: 44px;
+
+    padding: 11px 16px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #f4c542;
+    color: #111827;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.login-page .login-btn:hover {
+    background: #d9aa18;
+}
+
+/* Error message */
+.login-page .error {
+    margin-top: 14px;
+
+    color: #fecaca;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+/* Sign-up link */
+.login-page .signup-link {
+    margin-top: 20px;
+
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.login-page .signup-link a {
+    margin-left: 5px;
+
+    color: #f4c542;
+    font-weight: 700;
+}
+
+.login-page .signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* Divider */
+.login-page .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin: 22px 0;
+
+    color: #e5e7eb;
+    font-size: 13px;
+}
+
+.login-page .divider::before,
+.login-page .divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Social buttons */
+.login-page .google-btn,
+.login-page .facebook-btn {
+    width: 100%;
+    min-height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    margin-bottom: 10px;
+    padding: 10px 12px;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.login-page .google-btn {
+    background: #ffffff;
+    color: #111827;
+}
+
+.login-page .facebook-btn {
+    background: #1877f2;
+    color: #ffffff;
+}
+
+.login-page .google-btn img,
+.login-page .facebook-btn img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+    .login-page {
+        padding: 12px;
+    }
+
+    .login-page .overlay {
+        min-height: auto;
+        padding: 8px 0;
+    }
+
+    .login-page .login-card {
+        padding: 22px 18px;
+        border-radius: 16px;
+    }
+
+    .login-page .login-card h1 {
+        font-size: 27px;
+    }
+}
+
+/* Short laptop screens */
+@media (max-height: 700px) {
+    .login-page {
+        align-items: flex-start;
+    }
+
+    .login-page .overlay {
+        min-height: auto;
+        align-items: flex-start;
+    }
+}
