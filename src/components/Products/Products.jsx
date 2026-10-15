@@ -9,6 +9,41 @@ function Products() {
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("All");
 
+    function addToCart(product) {
+    const savedCart = JSON.parse(
+        localStorage.getItem("cartItems") || "[]"
+    );
+
+    const existingProduct = savedCart.find(
+        (item) => item.id === product.id
+    );
+
+    let updatedCart;
+
+    if (existingProduct) {
+        updatedCart = savedCart.map((item) =>
+            item.id === product.id
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+        );
+    } else {
+        updatedCart = [
+            ...savedCart,
+            {
+                ...product,
+                quantity: 1
+            }
+        ];
+    }
+
+    localStorage.setItem(
+        "cartItems",
+        JSON.stringify(updatedCart)
+    );
+
+    alert(`${product.name} added to cart!`);
+}
+
     const products = [
         {
             id: 1,
@@ -243,12 +278,12 @@ function Products() {
                                     </strong>
 
                                     <button
-                                        className="cart-button"
-                                        type="button"
-                                    >
-                                        Add to Cart
-                                    </button>
-
+    className="cart-button"
+    type="button"
+    onClick={() => addToCart(product)}
+>
+    Add to Cart
+</button>
                                 </div>
 
                             </div>

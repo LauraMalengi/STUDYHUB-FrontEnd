@@ -1,114 +1,164 @@
-/* =========================
-   APP GLOBAL STYLES
-========================= */
+/* =========================================
+   STUDYHUB APP
+========================================= */
 
-:root {
-    --text: #6b6375;
-    --text-h: #08060d;
-    --bg: #ffffff;
-    --border: #e5e4e7;
-    --accent: #aa3bff;
-    --accent-bg: rgba(170, 59, 255, 0.1);
-    --accent-border: rgba(170, 59, 255, 0.5);
-
-    --sans: system-ui, "Segoe UI", Roboto, sans-serif;
-    --heading: system-ui, "Segoe UI", Roboto, sans-serif;
-    --mono: ui-monospace, Consolas, monospace;
-
-    font-family: var(--sans);
-    color: var(--text);
-    background: var(--bg);
-
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-
-/* =========================
-   PAGE BASICS
-========================= */
-
-html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
-}
-
-
-/* =========================
-   REACT ROOT
-========================= */
-
-#root {
-    width: 100%;
+.app {
     min-height: 100vh;
+    background: var(--background);
 }
 
 
-/* =========================
-   HEADINGS
-========================= */
+/* =========================================
+   PAGE WRAPPER
+========================================= */
 
-h1,
-h2 {
-    font-family: var(--heading);
-    color: var(--text-h);
-}
+.page-wrapper {
+    width: 100%;
+    min-height: calc(100vh - 70px);
 
-h1 {
-    font-size: 56px;
-    letter-spacing: -1.68px;
-    margin: 32px 0;
-}
-
-h2 {
-    font-size: 24px;
-    line-height: 118%;
-    letter-spacing: -0.24px;
-    margin: 0 0 8px;
+    animation: pageEnter 0.5s ease both;
 }
 
 
-/* =========================
-   PARAGRAPHS
-========================= */
+/* =========================================
+   SECTION
+========================================= */
 
-p {
-    margin: 0;
+.section {
+    width: min(1200px, 92%);
+    margin: 0 auto;
+    padding: 70px 0;
 }
 
 
-/* =========================
-   CODE
-========================= */
+/* =========================================
+   SECTION HEADER
+========================================= */
 
-code {
-    font-family: var(--mono);
-    font-size: 15px;
-    line-height: 135%;
-    padding: 4px 8px;
-    border-radius: 4px;
-    color: var(--text-h);
+.section-header {
+    margin-bottom: 35px;
+}
+
+.section-header h2 {
+    margin-bottom: 10px;
+}
+
+.section-header p {
+    max-width: 600px;
 }
 
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* =========================================
+   PRIMARY BUTTON
+========================================= */
 
-@media (max-width: 1024px) {
+.primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
-    h1 {
-        font-size: 36px;
-        margin: 20px 0;
+    padding: 13px 24px;
+
+    background: var(--primary);
+    color: var(--dark);
+
+    border-radius: var(--radius-sm);
+
+    font-weight: 700;
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.primary-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+
+/* =========================================
+   SECONDARY BUTTON
+========================================= */
+
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 13px 24px;
+
+    background: var(--dark);
+    color: var(--white);
+
+    border-radius: var(--radius-sm);
+
+    font-weight: 700;
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.secondary-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+
+/* =========================================
+   GENERAL CARD
+========================================= */
+
+.card {
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid rgba(244, 197, 66, 0.45);
+    outline-offset: 3px;
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
-
-    h2 {
-        font-size: 20px;
-    }
-
 }
