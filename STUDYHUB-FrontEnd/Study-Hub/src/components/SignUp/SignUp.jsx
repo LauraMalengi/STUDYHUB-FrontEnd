@@ -43,7 +43,7 @@ function SignUp() {
 
         try {
 
-            const response = await fetch("http://100.60.192.143:3001/signup", {
+            const response = await fetch("http://184.193.66.236:3001/signup", {
 
                 method: "POST",
 

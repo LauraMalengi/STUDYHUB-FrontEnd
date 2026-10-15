@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import "./Cart.css";
@@ -7,24 +7,18 @@ function Cart() {
 
     const navigate = useNavigate();
 
-    const [cartItems, setCartItems] = useState([
-        {
-            id: 1,
-            name: "Computer Science Textbook",
-            category: "Textbooks",
-            price: 350,
-            quantity: 1,
-            image: "📚"
-        },
-        {
-            id: 2,
-            name: "Scientific Calculator",
-            category: "Calculators",
-            price: 250,
-            quantity: 2,
-            image: "🧮"
-        }
-    ]);
+    const [cartItems, setCartItems] = useState(() => {
+    return JSON.parse(
+        localStorage.getItem("cartItems") || "[]"
+    );
+});
+
+useEffect(() => {
+    localStorage.setItem(
+        "cartItems",
+        JSON.stringify(cartItems)
+    );
+}, [cartItems]);
 
 
     // Increase quantity
